@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist | SportKick</title>
+  <meta name="theme-color" content="#0a192f">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left">
+      <span><i class="fas fa-truck-fast"></i> FREE Delivery on orders above ₹499</span>
+    </div>
+    <div class="right">
+      <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">SK</div>
+      <div class="brand-name">Sport<span>Kick</span></div>
+    </div>
+
+    <div class="nav-center">
+      <div class="search-wrap">
+        <input type="text" id="topSearch" placeholder="Search shoes, apparel, gear...">
+        <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+        <div id="searchSuggestions" class="search-suggestions"></div>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="products.html"><i class="fas fa-basketball"></i> Shop</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileMenu"><i class="fas fa-bars"></i></button>
+
+    <div class="nav-actions">
+      <div class="nav-icon" id="cartIcon" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="count" id="cartCount">0</span>
+      </div>
+      <div class="nav-icon" id="wishIcon" title="Wishlist">
+        <i class="fas fa-heart"></i>
+        <span class="count" id="wishCount">0</span>
+      </div>
+      <div class="user-menu">
+        <button class="user-btn" id="userBtn">
+          <i class="fas fa-user"></i> <span id="userName">Hello, sign in</span>
+        </button>
+        <div class="dropdown" id="userDropdown">
+          <a href="#" id="profileLink"><i class="fas fa-user-circle"></i> Your Account</a>
+          <a href="#" id="ordersLink"><i class="fas fa-box"></i> Your Orders</a>
+          <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+          <a href="#" id="loginLink"><i class="fas fa-sign-in-alt"></i> Login / Join</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <div class="shop-header">
+      <div>
+        <h2>Wishlist</h2>
+      </div>
+    </div>
+    <div id="wishlistItems"></div>
+    <div class="empty-state" id="wishlistEmpty" style="display:none;">
+      <div class="empty-icon"><i class="fas fa-heart"></i></div>
+      <h3>Your wishlist is empty</h3>
+      <p>Save your favorite products for later.</p>
+      <a href="products.html" class="btn btn-cyan">Start Shopping</a>
+    </div>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

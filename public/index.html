@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportKick | Premium Sportswear & Athletic Gear</title>
+  <meta name="description" content="Shop premium athletic footwear, sportswear, and athletic gear engineered for athletes across running, basketball, football, cricket, tennis, gym and swimming.">
+  <meta name="theme-color" content="#0a192f">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:title" content="SportKick | Premium Sportswear & Athletic Gear">
+  <meta property="og:description" content="Engineered for athletes who demand more. Shop 60+ premium athletic shoes, apparel, and equipment.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left">
+      <span><i class="fas fa-truck-fast"></i> FREE Delivery on orders above ₹499</span>
+      <span><i class="fas fa-headset"></i> 24x7 Athlete Support</span>
+    </div>
+    <div class="right">
+      <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="register.html"><i class="fas fa-user-plus"></i> Join</a>
+    </div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">SK</div>
+      <div class="brand-name">Sport<span>Kick</span></div>
+    </div>
+
+    <div class="nav-center">
+      <div class="search-wrap">
+        <input type="text" id="topSearch" placeholder="Search shoes, apparel, gear...">
+        <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+        <div id="searchSuggestions" class="search-suggestions"></div>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="products.html"><i class="fas fa-basketball"></i> Shop</a>
+      <a href="#deals"><i class="fas fa-fire"></i> Deals</a>
+      <a href="#brands"><i class="fas fa-star"></i> Brands</a>
+    </div>
+
+    <button class="mobile-toggle" id="mobileMenu"><i class="fas fa-bars"></i></button>
+
+    <div class="nav-actions">
+      <div class="nav-icon" id="cartIcon" title="Cart" style="cursor:pointer;">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="count" id="cartCount">0</span>
+      </div>
+      <div class="nav-icon" id="wishIcon" title="Wishlist" style="cursor:pointer;">
+        <i class="fas fa-heart"></i>
+        <span class="count" id="wishCount">0</span>
+      </div>
+      <div class="user-menu">
+        <button class="user-btn" id="userBtn" style="cursor:pointer;">
+          <i class="fas fa-user"></i> <span id="userName">Hello, sign in</span>
+        </button>
+        <div class="dropdown" id="userDropdown">
+          <a href="cart.html" id="ordersLink"><i class="fas fa-box"></i> Your Orders & Cart</a>
+          <a href="wishlist.html" id="profileLink"><i class="fas fa-heart"></i> Your Wishlist</a>
+          <a href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+          <a href="login.html" id="loginLink"><i class="fas fa-sign-in-alt"></i> Login / Join</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-kicker"><i class="fas fa-bolt"></i> New Collection Drop</div>
+    <h1>Gear Up for <span class="accent">Every Sport</span></h1>
+    <p>Premium athletic footwear and apparel engineered for athletes who demand more. Shop by sport, brand, and performance.</p>
+    <div class="hero-actions">
+      <a href="products.html" class="btn btn-cyan btn-lg"><i class="fas fa-bolt"></i> Explore Collection</a>
+      <a href="#categories" class="btn btn-outline btn-lg" style="color:#ffffff; border-color:rgba(255,255,255,0.4);"><i class="fas fa-basketball"></i> Browse Sports</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="https://images.unsplash.com/photo-1515893304607-20e8d76ebf59?w=1200&q=80" alt="Athletic gear">
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker"><i class="fas fa-tag"></i> Shop by Sport</div>
+      <h2>Find Your Game</h2>
+      <p>Performance gear engineered for every sport you love.</p>
+    </div>
+    <div class="section-tabs" id="sportTabs">
+      <button class="tab-btn active" data-sport="all" style="border-color:var(--cyan);color:var(--cyan)">All Sports</button>
+    </div>
+    <div class="category-cards-grid" id="categoryCardsGrid"></div>
+    <div class="grid-products" id="homeProducts"></div>
+  </div>
+</section>
+
+<section class="section" id="brands" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker"><i class="fas fa-star"></i> Featured Brands</div>
+      <h2>Top Athletic Brands</h2>
+      <p>Official gear from the world's leading sportswear brands.</p>
+    </div>
+    <div class="brand-grid" id="brandGrid"></div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="promo-banner">
+    <div class="promo-banner-content">
+      <div class="kicker"><i class="fas fa-bolt"></i> Elite Pro Drop</div>
+      <h2>Engineered for Greatness. Built for Speed.</h2>
+      <p>Discover our elite marathon racing and court collection with carbon-fiber propulsion and nitrogen-infused energy return.</p>
+      <a href="products.html" class="btn btn-cyan btn-lg"><i class="fas fa-shopping-bag"></i> Shop The Drop</a>
+    </div>
+    <div class="promo-banner-visual">
+      <img src="https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=1000&q=80" alt="Athletic training">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="deals">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker"><i class="fas fa-fire"></i> New Arrivals</div>
+      <h2>Latest Drops</h2>
+      <p>Fresh gear just landed. Grab it before it's gone.</p>
+    </div>
+    <div class="grid-products" id="dealsProducts"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom: 12px;">
+          <div class="brand-mark">SK</div>
+          <div class="brand-name">Sport<span>Kick</span></div>
+        </div>
+        <p>Premium athletic footwear and sportswear engineered for athletes who demand performance, comfort, and style.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sports</h4>
+        <a href="products.html?category=running">Running</a>
+        <a href="products.html?category=basketball">Basketball</a>
+        <a href="products.html?category=football">Football</a>
+        <a href="products.html?category=cricket">Cricket</a>
+        <a href="products.html?category=gym-training">Gym & Training</a>
+      </div>
+      <div class="footer-col">
+        <h4>Top Brands</h4>
+        <a href="products.html?brand=Nike">Nike</a>
+        <a href="products.html?brand=Adidas">Adidas</a>
+        <a href="products.html?brand=Puma">Puma</a>
+        <a href="products.html?brand=Under Armour">Under Armour</a>
+        <a href="products.html?brand=Asics">Asics</a>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <a href="cart.html">Shopping Cart</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Create Account</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 SportKick Inc. All rights reserved. Built for athletes everywhere.</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

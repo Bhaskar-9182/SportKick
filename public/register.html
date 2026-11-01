@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | SportKick</title>
+  <meta name="theme-color" content="#0a192f">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left"><span><i class="fas fa-truck-fast"></i> FREE Delivery on orders above ₹499</span></div>
+    <div class="right"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Already have an account?</a></div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">SK</div>
+      <div class="brand-name">Sport<span>Kick</span></div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-actions">
+        <a href="index.html" class="nav-icon" style="color:var(--ink);"><i class="fas fa-home"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="section" style="padding-top: 40px;">
+  <div class="container">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <div class="auth-visual">
+          <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80" alt="Basketball athlete">
+          <div class="auth-visual-content">
+            <div class="badge badge-hot" style="margin-bottom: 12px;"><i class="fas fa-fire"></i> Join The Crew</div>
+            <h3>Join 50,000+ Athletes Across India</h3>
+            <p>Get ₹500 welcome discount on your first order, free express shipping, and exclusive member-only releases.</p>
+          </div>
+        </div>
+        <div class="auth-form-side">
+          <h2>Create Account</h2>
+          <p>Join SportKick for a personalized athletic experience</p>
+          <div class="alert alert-error" id="registerError"></div>
+          <form id="registerForm">
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Your Name</label>
+              <input type="text" id="regName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" id="regEmail" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-lock"></i> Password</label>
+              <input type="password" id="regPassword" placeholder="••••••••" required>
+              <small>Must be at least 6 characters</small>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-shield-alt"></i> Confirm Password</label>
+              <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top: 12px; font-size: 18px; padding: 18px 32px; border-radius: 14px;">
+              <i class="fas fa-user-plus"></i> Create SportKick Account
+            </button>
+          </form>
+          <div class="auth-footer">
+            Already have an account? <a href="login.html">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

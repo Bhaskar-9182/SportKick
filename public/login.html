@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SportKick</title>
+  <meta name="theme-color" content="#0a192f">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="left"><span><i class="fas fa-truck-fast"></i> FREE Delivery on orders above ₹499</span></div>
+    <div class="right"><a href="register.html"><i class="fas fa-user-plus"></i> Create Account</a></div>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">SK</div>
+      <div class="brand-name">Sport<span>Kick</span></div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-actions">
+        <a href="index.html" class="nav-icon" style="color:var(--ink);"><i class="fas fa-home"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="section" style="padding-top: 40px;">
+  <div class="container">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <div class="auth-visual">
+          <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80" alt="Athlete training">
+          <div class="auth-visual-content">
+            <div class="badge badge-new" style="margin-bottom: 12px;"><i class="fas fa-bolt"></i> Athlete Exclusive</div>
+            <h3>Gear Up for Your Next Personal Best</h3>
+            <p>Access exclusive gear drops, personalized athlete fit recommendations, and tracked orders.</p>
+          </div>
+        </div>
+        <div class="auth-form-side">
+          <h2>Welcome Back</h2>
+          <p>Sign in to your SportKick account</p>
+          <div class="alert alert-error" id="loginError"></div>
+          <form id="loginForm">
+            <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" id="loginEmail" placeholder="you@example.com" value="demo@sportkick.com" required>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-lock"></i> Password</label>
+              <input type="password" id="loginPassword" placeholder="••••••••" value="password123" required>
+              <small style="margin-top:6px; display:flex; justify-content:space-between;">
+                <span style="color:var(--text-muted);">Demo: demo@sportkick.com / password123</span>
+                <a href="#" style="color:var(--cyan); font-weight:600;">Forgot password?</a>
+              </small>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top: 12px; font-size: 18px; padding: 18px 32px; border-radius: 14px;">
+              <i class="fas fa-sign-in-alt"></i> Sign In to SportKick
+            </button>
+          </form>
+          <div style="margin-top: 16px; text-align: center;">
+            <button type="button" class="btn btn-outline btn-full btn-sm" onclick="document.getElementById('loginEmail').value='demo@sportkick.com'; document.getElementById('loginPassword').value='password123'; document.getElementById('loginForm').dispatchEvent(new Event('submit'));">
+              <i class="fas fa-user-check"></i> One-Click Demo Login
+            </button>
+          </div>
+          <div class="auth-footer">
+            New to SportKick? <a href="register.html">Create your account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
