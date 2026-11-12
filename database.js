@@ -117,7 +117,7 @@ function seed() {
 
   const insertBrand = db.prepare("INSERT INTO brands (name, logo, image) VALUES (?, ?, ?)");
   const brands = [
-    ["Nike", "N", "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80"],
+    ["Nike", "N", "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=600&q=80"],
     ["Adidas", "A", "https://images.unsplash.com/photo-1608233927761-4c1b96781e1a?w=600&q=80"],
     ["Puma", "P", "https://images.unsplash.com/photo-1617824811217-86f887463e0b?w=600&q=80"],
     ["Reebok", "R", "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&q=80"],
@@ -141,7 +141,7 @@ function seed() {
   `);
 
   const products = [
-    ["Nike Air Zoom Pegasus 41", "Premium running shoes with responsive ZoomX cushioning for daily miles and race day speed.", "Responsive cushioning for daily miles", 12999, 10999, catMap.running, brandMap.Nike, "7,8,9,10,11,12", "White/Electric", 50, 4.5, 128, "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80", '["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80","https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80"]', 1, 1, 1],
+    ["Nike Air Zoom Pegasus 41", "Premium running shoes with responsive ZoomX cushioning for daily miles and race day speed.", "Responsive cushioning for daily miles", 12999, 10999, catMap.running, brandMap.Nike, "7,8,9,10,11,12", "White/Electric", 50, 4.5, 128, "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80", '["https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80","https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&q=80","https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=800&q=80","https://images.unsplash.com/photo-1606107565327-dc922120a07e?w=800&q=80"]', 1, 1, 1],
     ["Adidas Ultraboost 23", "Energy-returning BOOST midsole with Primeknit upper for endless comfort on every run.", "Endless comfort with BOOST", 17999, null, catMap.running, brandMap.Adidas, "7,8,9,10,11,12", "Core Black", 40, 4.7, 205, "https://images.unsplash.com/photo-1608233927761-4c1b96781e1a?w=800&q=80", '["https://images.unsplash.com/photo-1608233927761-4c1b96781e1a?w=800&q=80"]', 1, 0, 0],
     ["Puma Future Z 1.4", "Agile football boots with Fuzionfit+ compression for quick cuts and explosive speed.", "Explosive speed on the pitch", 15999, 13999, catMap.football, brandMap.Puma, "7,8,9,10,11", "Vivid Blue", 35, 4.4, 96, "https://images.unsplash.com/photo-1617824811217-86f887463e0b?w=800&q=80", '["https://images.unsplash.com/photo-1617824811217-86f887463e0b?w=800&q=80"]', 0, 1, 0],
     ["Nike LeBron XXII", "Maximum impact protection and court dominance for the modern basketball game.", "Court dominance", 19999, null, catMap.basketball, brandMap.Nike, "8,9,10,11,12,13", "Lakers Gold", 30, 4.8, 174, "https://images.unsplash.com/photo-1596644618356-910f61a23ec4?w=800&q=80", '["https://images.unsplash.com/photo-1596644618356-910f61a23ec4?w=800&q=80"]', 1, 0, 1],

@@ -235,6 +235,10 @@ function renderBrandFilters() {
   });
 }
 
+function getFallbackImage() {
+  return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Crect width='600' height='600' fill='%23f1f5f9'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='700' font-size='22' fill='%2394a3b8' text-anchor='middle' dominant-baseline='middle'%3ESportKick Gear%3C/text%3E%3C/svg%3E";
+}
+
 function renderBrandGrid() {
   const container = $el("brandGrid");
   if (!container) return;
@@ -242,7 +246,7 @@ function renderBrandGrid() {
   STATE.brands.forEach((b) => {
     const card = document.createElement("div");
     card.className = "brand-card";
-    const bgImg = b.image || "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80";
+    const bgImg = b.image || "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=600&q=80";
     card.style.backgroundImage = `linear-gradient(to top, rgba(10, 25, 47, 0.92) 0%, rgba(10, 25, 47, 0.4) 60%, rgba(10, 25, 47, 0.2) 100%), url('${bgImg}')`;
     card.innerHTML = `
       <div class="brand-badge"><i class="fas fa-star"></i></div>
@@ -265,7 +269,7 @@ function renderProductCard(p) {
   return `
     <div class="product-card fade-in" onclick="appGoProduct(${p.id})" style="cursor:pointer;">
       <div class="card-image-wrap">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80';">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src=getFallbackImage();">
         ${p.new_arrival ? '<span class="card-badge badge-new">New Arrival</span>' : ""}
         ${off > 0 ? '<span class="card-badge badge-sale" style="top:auto;bottom:16px;left:16px;">' + off + '% Off</span>' : ""}
         ${p.trending ? '<span class="card-badge badge-trend" style="top:auto;bottom:16px;right:16px;">Trending</span>' : ""}
@@ -489,12 +493,12 @@ function renderProductDetail(p) {
   const thumbs = $el("thumbList");
   if (main) {
     main.src = images[0];
-    main.onerror = function() { this.src = 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&q=80'; };
+    main.onerror = function() { this.src = getFallbackImage(); };
   }
   if (thumbs) {
     thumbs.innerHTML = images.map((img, i) => `
       <div class="thumb ${i === 0 ? "active" : ""}" onclick="appSetThumb(${i}, '${img.replace(/'/g, "\\'")}')">
-        <img src="${img}" alt="Thumbnail ${i+1}" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80';">
+        <img src="${img}" alt="Thumbnail ${i+1}" onerror="this.onerror=null;this.src=getFallbackImage();">
       </div>
     `).join("");
   }
@@ -710,7 +714,7 @@ async function loadCart() {
     const price = item.discount_price || item.price;
     return `
       <div class="cart-item fade-in">
-        <img src="${item.image}" alt="${item.name}" loading="lazy" onclick="appGoProduct(${item.product_id})" style="cursor:pointer;" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80';">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" onclick="appGoProduct(${item.product_id})" style="cursor:pointer;" onerror="this.onerror=null;this.src=getFallbackImage();">
         <div class="cart-item-info">
           <h4><a href="product.html?id=${item.product_id}" style="color:inherit;">${item.name}</a></h4>
           <p>Size: ${item.size || "N/A"} \u2022 ${item.category_name || "Sports"}</p>
@@ -798,7 +802,7 @@ async function loadWishlist() {
     const price = item.discount_price || item.price;
     return `
       <div class="wishlist-item fade-in">
-        <img src="${item.image}" alt="${item.name}" loading="lazy" onclick="appGoProduct(${item.product_id})" style="cursor:pointer;" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80';">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" onclick="appGoProduct(${item.product_id})" style="cursor:pointer;" onerror="this.onerror=null;this.src=getFallbackImage();">
         <div class="wishlist-item-info">
           <h4><a href="product.html?id=${item.product_id}" style="color:inherit;">${item.name}</a></h4>
           <p>${item.category_name || "Sports"} \u2022 ${item.brand_name || ""}</p>
@@ -1030,12 +1034,67 @@ function initReviewForm() {
   });
 }
 
+function initDemoVideo() {
+  const video = $el("siteDemoVideo");
+  const overlay = $el("videoCustomOverlay");
+  const playBtn = $el("heroPlayBtn");
+  if (!video) return;
+
+  function play() {
+    video.play().catch(() => {});
+    if (overlay) overlay.classList.add("hidden");
+  }
+
+  function pause() {
+    video.pause();
+    if (overlay) overlay.classList.remove("hidden");
+  }
+
+  if (playBtn) playBtn.addEventListener("click", play);
+  if (overlay) {
+    overlay.addEventListener("click", (e) => {
+      play();
+    });
+  }
+
+  video.addEventListener("play", () => {
+    if (overlay) overlay.classList.add("hidden");
+  });
+  video.addEventListener("pause", () => {
+    if (overlay) overlay.classList.remove("hidden");
+  });
+
+  video.addEventListener("timeupdate", () => {
+    const t = video.currentTime;
+    const chapters = document.querySelectorAll(".chapter-item");
+    if (!chapters.length) return;
+    const times = [0, 8, 16, 24];
+    let activeIdx = 0;
+    for (let i = times.length - 1; i >= 0; i--) {
+      if (t >= times[i]) {
+        activeIdx = i;
+        break;
+      }
+    }
+    chapters.forEach((c, idx) => {
+      c.classList.toggle("active", idx === activeIdx);
+    });
+  });
+
+  window.jumpVideoChapter = function(seconds) {
+    if (!video) return;
+    video.currentTime = seconds;
+    play();
+  };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   initNavIcons();
   initSearch();
   initMobileMenu();
   initQtyControls();
   initReviewForm();
+  initDemoVideo();
 
   // Load user session first
   await loadUser();
