@@ -106,9 +106,10 @@
           <div class="video-overlay-badge">
             <span class="live-dot"></span> HD &bull; Platform Walkthrough
           </div>
-          <video id="siteDemoVideo" poster="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80" preload="metadata" playsinline controls>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-athlete-tying-his-running-shoes-42993-large.mp4" type="video/mp4">
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+          <video id="siteDemoVideo" poster="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80" preload="metadata" playsinline controls muted>
+            <source src="videos/sportkick-demo.webm" type="video/webm">
+            <source src="videos/sportkick-demo.mp4" type="video/mp4">
+            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/8/8b/Trail_running_in_Spain.webm/Trail_running_in_Spain.webm.480p.vp9.webm" type="video/webm">
             Your browser does not support HTML5 video.
           </video>
           <div class="video-custom-overlay" id="videoCustomOverlay">
@@ -122,6 +123,12 @@
           </div>
         </div>
 
+        <div class="video-quick-controls">
+          <button class="v-ctrl-btn" id="videoTogglePlayBtn"><i class="fas fa-play"></i> <span>Play Video</span></button>
+          <button class="v-ctrl-btn" id="videoMuteToggleBtn"><i class="fas fa-volume-mute"></i> <span>Unmute</span></button>
+          <button class="v-ctrl-btn" id="videoRestartBtn"><i class="fas fa-redo"></i> <span>Restart</span></button>
+        </div>
+
         <div class="demo-chapters-bar">
           <div class="chapter-item active" onclick="jumpVideoChapter(0)">
             <i class="fas fa-compass"></i>
@@ -130,21 +137,21 @@
               <span>Filter by sport, brand & size</span>
             </div>
           </div>
-          <div class="chapter-item" onclick="jumpVideoChapter(8)">
+          <div class="chapter-item" onclick="jumpVideoChapter(10)">
             <i class="fas fa-layer-group"></i>
             <div>
               <strong>2. Product Dashboard</strong>
               <span>4-angle HD gallery & specs</span>
             </div>
           </div>
-          <div class="chapter-item" onclick="jumpVideoChapter(16)">
+          <div class="chapter-item" onclick="jumpVideoChapter(25)">
             <i class="fas fa-shopping-bag"></i>
             <div>
               <strong>3. Cart & Wishlist Sync</strong>
               <span>Instant bag updates & sizes</span>
             </div>
           </div>
-          <div class="chapter-item" onclick="jumpVideoChapter(24)">
+          <div class="chapter-item" onclick="jumpVideoChapter(45)">
             <i class="fas fa-check-circle"></i>
             <div>
               <strong>4. Fast Checkout</strong>
@@ -195,18 +202,38 @@
   </div>
 </section>
 
-<section class="section" id="categories">
+<!-- ===== SECTION: SHOP BY SPORT (CATEGORIES) ===== -->
+<section class="section categories-section" id="categories">
   <div class="container">
-    <div class="section-head">
-      <div class="kicker"><i class="fas fa-tag"></i> Shop by Sport</div>
-      <h2>Find Your Game</h2>
-      <p>Performance gear engineered for every sport you love.</p>
+    <div class="section-head text-center">
+      <div class="kicker"><i class="fas fa-tag"></i> Sports Collections</div>
+      <h2>Shop by Sport</h2>
+      <p>Discover footwear, apparel, and high-performance equipment tailored for your discipline.</p>
     </div>
+    <div class="category-cards-grid" id="categoryCardsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SECTION: FEATURED PRODUCT CATALOG ===== -->
+<section class="section catalog-section" id="catalog" style="background: var(--surface);">
+  <div class="container">
+    <div class="section-head text-center">
+      <div class="kicker"><i class="fas fa-th-large"></i> Official Product Catalog</div>
+      <h2>Featured Athletic Gear</h2>
+      <p>Browse our curated selection of verified performance shoes and sportswear across all sports.</p>
+    </div>
+
     <div class="section-tabs" id="sportTabs">
       <button class="tab-btn active" data-sport="all" style="border-color:var(--cyan);color:var(--cyan)">All Sports</button>
     </div>
-    <div class="category-cards-grid" id="categoryCardsGrid"></div>
+
     <div class="grid-products" id="homeProducts"></div>
+
+    <div class="catalog-cta-wrap" style="text-align: center; margin-top: 40px;">
+      <a href="products.html" class="btn btn-cyan btn-lg">
+        <i class="fas fa-bolt"></i> View Complete Catalog (60+ Products) <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
   </div>
 </section>
 

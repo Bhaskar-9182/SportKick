@@ -115,6 +115,8 @@ function updateAuthUI() {
   }
   logoutLink && (logoutLink.onclick = (e) => { e.preventDefault(); logout(); });
   loginLink && (loginLink.onclick = (e) => { e.preventDefault(); location.href = "login.html"; });
+  profileLink && (profileLink.onclick = (e) => { e.preventDefault(); location.href = "wishlist.html"; });
+  ordersLink && (ordersLink.onclick = (e) => { e.preventDefault(); location.href = "cart.html"; });
 }
 
 async function logout() {
@@ -607,11 +609,20 @@ window.appSetThumb = function (i, src) {
   document.querySelectorAll(".thumb").forEach((t, idx) => t.classList.toggle("active", idx === i));
 };
 
+window.switchTab = function (tabId, btn) {
+  document.querySelectorAll(".tab-trigger").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  const target = $el("tab-" + tabId);
+  if (target) target.classList.add("active");
+};
+
 async function addToCart(id, qty = 1, event, size = null) {
   if (event) event.stopPropagation();
   if (!STATE.user) {
     showToast("Please login to add items to cart", "error");
-    setTimeout(() => { location.href = "login.html"; }, 1500);
+    const current = encodeURIComponent(location.pathname + location.search);
+    setTimeout(() => { location.href = "login.html?redirect=" + current; }, 1000);
     return;
   }
   const res = await request("/api/cart", { method: "POST", body: { product_id: id, quantity: qty, size } });
@@ -652,7 +663,8 @@ async function toggleWish(id, event) {
   if (event) event.stopPropagation();
   if (!STATE.user) {
     showToast("Please login to add items to wishlist", "error");
-    setTimeout(() => { location.href = "login.html"; }, 1500);
+    const current = encodeURIComponent(location.pathname + location.search);
+    setTimeout(() => { location.href = "login.html?redirect=" + current; }, 1000);
     return;
   }
   const res = await request("/api/wishlist", { method: "POST", body: { product_id: id } });
@@ -765,7 +777,7 @@ window.appRemoveCart = async function (id) {
 };
 
 async function placeOrder() {
-  if (!STATE.user) { showToast("Please login to place order", "error"); location.href = "login.html"; return; }
+  if (!STATE.user) { showToast("Please login to place order", "error"); location.href = "login.html?redirect=cart.html"; return; }
   const name = $el("checkoutName") ? $el("checkoutName").value.trim() : "";
   const email = $el("checkoutEmail") ? $el("checkoutEmail").value.trim() : "";
   const phone = $el("checkoutPhone") ? $el("checkoutPhone").value.trim() : "";
@@ -844,7 +856,8 @@ async function handleLogin(e) {
     updateAuthUI();
     await loadCounts();
     showToast("Welcome back, " + STATE.user.name + "! 👋");
-    setTimeout(() => { location.href = "index.html"; }, 500);
+    const redirect = new URLSearchParams(location.search).get("redirect");
+    setTimeout(() => { location.href = redirect ? decodeURIComponent(redirect) : "index.html"; }, 500);
   } else {
     err && (err.textContent = res.message || "Login failed. Please check your credentials.");
     err && (err.style.display = "block");
@@ -880,7 +893,8 @@ async function handleRegister(e) {
     updateAuthUI();
     await loadCounts();
     showToast("Account created successfully! 🎉");
-    setTimeout(() => { location.href = "index.html"; }, 500);
+    const redirect = new URLSearchParams(location.search).get("redirect");
+    setTimeout(() => { location.href = redirect ? decodeURIComponent(redirect) : "index.html"; }, 500);
   } else {
     err && (err.textContent = res.message || "Registration failed");
     err && (err.style.display = "block");
@@ -1038,37 +1052,81 @@ function initDemoVideo() {
   const video = $el("siteDemoVideo");
   const overlay = $el("videoCustomOverlay");
   const playBtn = $el("heroPlayBtn");
+  const toggleBtn = $el("videoTogglePlayBtn");
+  const muteBtn = $el("videoMuteToggleBtn");
+  const restartBtn = $el("videoRestartBtn");
   if (!video) return;
 
+  function updatePlayState(isPlaying) {
+    if (isPlaying) {
+      if (overlay) overlay.classList.add("hidden");
+      if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-pause"></i> <span>Pause Video</span>';
+    } else {
+      if (overlay) overlay.classList.remove("hidden");
+      if (toggleBtn) toggleBtn.innerHTML = '<i class="fas fa-play"></i> <span>Play Video</span>';
+    }
+  }
+
   function play() {
-    video.play().catch(() => {});
-    if (overlay) overlay.classList.add("hidden");
+    video.play().then(() => {
+      updatePlayState(true);
+    }).catch(err => {
+      console.warn("Video play prevented:", err);
+      // Try playing muted if browser blocked audio
+      video.muted = true;
+      video.play().catch(() => {});
+      updatePlayState(true);
+    });
   }
 
   function pause() {
     video.pause();
-    if (overlay) overlay.classList.remove("hidden");
+    updatePlayState(false);
   }
 
-  if (playBtn) playBtn.addEventListener("click", play);
-  if (overlay) {
-    overlay.addEventListener("click", (e) => {
+  function togglePlay() {
+    if (video.paused) play();
+    else pause();
+  }
+
+  if (playBtn) playBtn.addEventListener("click", (e) => { e.stopPropagation(); play(); });
+  if (overlay) overlay.addEventListener("click", (e) => { play(); });
+  if (toggleBtn) toggleBtn.addEventListener("click", togglePlay);
+
+  if (video) {
+    video.addEventListener("click", () => {
+      if (!overlay || overlay.classList.contains("hidden")) {
+        togglePlay();
+      }
+    });
+  }
+
+  if (muteBtn) {
+    muteBtn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      if (video.muted) {
+        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> <span>Unmute</span>';
+      } else {
+        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span>Mute</span>';
+      }
+    });
+  }
+
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      video.currentTime = 0;
       play();
     });
   }
 
-  video.addEventListener("play", () => {
-    if (overlay) overlay.classList.add("hidden");
-  });
-  video.addEventListener("pause", () => {
-    if (overlay) overlay.classList.remove("hidden");
-  });
+  video.addEventListener("play", () => updatePlayState(true));
+  video.addEventListener("pause", () => updatePlayState(false));
 
   video.addEventListener("timeupdate", () => {
     const t = video.currentTime;
     const chapters = document.querySelectorAll(".chapter-item");
     if (!chapters.length) return;
-    const times = [0, 8, 16, 24];
+    const times = [0, 10, 25, 45];
     let activeIdx = 0;
     for (let i = times.length - 1; i >= 0; i--) {
       if (t >= times[i]) {

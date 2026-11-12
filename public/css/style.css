@@ -2350,6 +2350,41 @@ img { display: block; max-width: 100%; }
   margin: 0 auto;
 }
 
+.video-quick-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.v-ctrl-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.v-ctrl-btn:hover {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-1px);
+}
+
+.v-ctrl-btn i {
+  font-size: 14px;
+  color: var(--cyan);
+}
+
 .demo-chapters-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
